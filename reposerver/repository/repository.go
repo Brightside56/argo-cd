@@ -1209,14 +1209,14 @@ func helmTemplate(appPath string, repoRoot string, env *v1alpha1.Env, q *apiclie
 				chartCannotBeReached := strings.Contains(msg, "is not a valid chart repository or cannot be reached")
 				couldNotDownloadChart := strings.Contains(msg, "could not download")
 
-				if (chartCannotBeReached || couldNotDownloadChart) && !isSourcePermitted(repo.Repo, q.ProjectSourceRepos) {
-					reposNotPermitted = append(reposNotPermitted, repo.Repo)
-				}
+				// if (chartCannotBeReached || couldNotDownloadChart) && !isSourcePermitted(repo.Repo, q.ProjectSourceRepos) {
+				// 	reposNotPermitted = append(reposNotPermitted, repo.Repo)
+				// }
 			}
 
-			if len(reposNotPermitted) > 0 {
-				return nil, status.Errorf(codes.PermissionDenied, "helm repos %s are not permitted in project '%s'", strings.Join(reposNotPermitted, ", "), q.ProjectName)
-			}
+			// if len(reposNotPermitted) > 0 {
+			// 	return nil, status.Errorf(codes.PermissionDenied, "helm repos %s are not permitted in project '%s'", strings.Join(reposNotPermitted, ", "), q.ProjectName)
+			// }
 
 			return nil, err
 		}
